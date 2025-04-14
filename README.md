@@ -3,6 +3,10 @@
 This project sets up a monitoring stack using **Prometheus** for collecting metrics and **Grafana** for visualizing them. It also includes **Node Exporter** to monitor host system metrics and **cAdvisor** (optional) to monitor container metrics.
 
 ---
+## Overview
+
+![prometheus-grafana.png](prometheus-grafana.png)
+---
 
 ## Table of Contents
 

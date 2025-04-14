@@ -18,6 +18,9 @@ services:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_storage:/var/lib/grafana
+      - grafana_config:/etc/grafana
 
   # Using prometheus to monitor the host's system metrics
   node-exporter:
@@ -28,15 +31,18 @@ services:
     restart: unless-stopped
 
   # Using prometheus to monitor other containers
-#  cadvisor:
-#    image: gcr.io/cadvisor/cadvisor:latest
-#    container_name: cadvisor
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - /:/rootfs:ro
-#      - /var/run:/var/run:ro
-#      - /sys:/sys:ro
-#      - /var/lib/docker:/var/lib/docker:ro
-#    restart: unless-stopped
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    restart: unless-stopped
 
+volumes:
+  grafana_storage:
+  grafana_config:
